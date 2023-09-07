@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+
+<head>
+	{% load static %}
+<title>
+	{% if request.session.lang == "en" %}
+        Grampanchayat
+     {% else %}
+		ग्रामपंचायत
+     {% endif %}
+</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="About">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/styles/bootstrap4/bootstrap.min.css">
+<link href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/styles/common.css">
+<!--<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/styles/responsive.css">-->
+<style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border: 2px solid black;
+}
+
+td {
+
+    text-align: left;
+    padding: 8px;
+    border: 2px solid #441c1c;
+}
+
+th {
+
+    text-align: left;
+    padding: 8px;
+    border: 2px solid black;
+    color: #441c1c;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+
+.dropbtn {
+
+
+    font-size: 16px;
+    background-color: #f5f3f0;
+}
+
+.dropdown {
+    position: relative;
+
+}
+
+
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+
+</style>
+</head>
+<body style="background-image:url('https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/skulls.png');">
+
+<div class="super_container">
+
+	<div class="about" style="padding-bottom: 48px;">
+		<div class="container">
+			<div class="row row-lg-eq-height">
+
+				<!-- About Content -->
+				<div class="col-lg-7">
+					<div class="about_content">
+						<div class="section_title">
+							<h2 style="font-family: Arial Black">About Saravali!</h2></div>
+						<div class="about_text">
+							<p style="text-align:justify">Saravali is a Census Town city in district of Thane, Maharashtra. The Saravali Census Town has population of 8,710 of which 5,008 are males while 3,702 are females as per report released by Census India 2011.
+
+								Population of Children with age of 0-6 is 1124 which is 12.90 % of total population of Saravali (CT). In Saravali Census Town, Female Sex Ratio is of 739 against state average of 929. Moreover Child Sex Ratio in Saravali is around 834 compared to Maharashtra state average of 894. Literacy rate of Saravali city is 92.79 % higher than state average of 82.34 %. In Saravali, Male literacy is around 94.84 % while female literacy rate is 89.97 %.
+
+								Saravali Census Town has total administration over 2,209 houses to which it supplies basic amenities like water and sewerage. It is also authorize to build roads within Saravali Census Town limits and impose taxes on properties coming under its jurisdiction. </p>
+						</div>
+
+					</div>
+				</div>
+				<div class="col-lg-7">
+					<div class="about_content">
+						<div class="section_title">
+							<h4 style="padding-top: 22px; font-family:Lucida Sans Unicode">Establishment of Saravali Grampanchayat: 1956</h4>
+							<h4 style="font-family:Lucida Sans Unicode">Seperation of Khairapada Grampanchayat: 1988-89</h4>
+							<h4 style="font-family:Lucida Sans Unicode">Grampanchayat of Khairapada merge into Saravali Grampanchayat: July 2013</h4>
+							<h4 style="font-family:Lucida Sans Unicode">Population before merging: 8710</h4>
+							<h4 style="font-family:Lucida Sans Unicode">Total Population according to report of 2013-14: 26485</h4>
+						</div>
+						<div class="section_title">
+							<h2 style="font-family: Arial Black">List of Sarpanch/Deputy-Sarpanch/Rural Development Officer:</h2>
+							<table style="margin-bottom:30px; margin-top:40px;">
+							<tr>
+								<th>Name</th>
+								<th>Position</th>
+								<th>Timeperiod</th>
+							</tr>
+							<tr>
+								<td>Laxmi Janardan Chandane</td>
+								<td>Sarpanch</td>
+								<td>2018 to 2023</td>
+							</tr>
+							<tr>
+								<td>Manisha Gharat</td>
+								<td>Deputy Sarpanch</td>
+								<td>2018 to 2023</td>
+							</tr>
+								<tr>
+								<td>Subhash Atmaram Kini</td>
+								<td>Rural Development Officer</td>
+								<td>-</td>
+							</tr>
+								<tr>
+								<td>Vaibhavi Vijay Raut</td>
+								<td>Sarpanch</td>
+								<td>2013 to 2018</td>
+							</tr>
+								<tr>
+								<td>Shital Santosh Govari</td>
+								<td>Deputy Sarpanch</td>
+								<td>2013 to 2014</td>
+							</tr>
+								<tr>
+								<td>Ashok Baliram Salunkhe</td>
+								<td>Deputy Sarpanch</td>
+								<td>2014 to 2016</td>
+							</tr>
+								<tr>
+								<td>Prajit Pandurang Gharat</td>
+								<td>Deputy Sarpanch</td>
+								<td>2016 to 2017</td>
+							</tr>
+								<tr>
+								<td>Suresh Rammanohar Sahani</td>
+								<td>Deputy Sarpanch</td>
+								<td>2017 to 2018</td>
+							</tr>
+								<tr>
+								<td>Subhash Atmaram Kini</td>
+								<td>Rural Development Officer</td>
+								<td>From 3 June 2015</td>
+							</tr>
+								<tr>
+								<td>Kamalakar Harishchandra Naik</td>
+								<td>Rural Development Officer</td>
+								<td>To 3 June 2015</td>
+							</tr>
+								<tr>
+								<td>Ganesh Mahadeo Thakur</td>
+								<td>Sarpanch</td>
+								<td>2008 to 2013</td>
+							</tr>
+							<tr>
+								<td>Chandrakant Haraji Macchi</td>
+								<td>Deputy Sarpanch</td>
+								<td>From 2008 to 2011</td>
+							</tr>
+								<tr>
+								<td>Panjabrao M Ghyare</td>
+								<td>Administrator</td>
+								<td>2007 to 2008</td>
+							</tr>
+							<tr>
+								<td>Shridhar Moreshwar Raut</td>
+								<td>Deputy Sarpanch</td>
+								<td>From 2007 to 2008</td>
+							</tr>
+								<tr>
+								<td>Arvind Tukaram Sankhe</td>
+								<td>Rural Development Officer</td>
+								<td>2006 to 2008</td>
+							</tr>
+								<tr>
+								<td>Kamalakar Harishchandra Naik</td>
+								<td>Rural Development Officer</td>
+								<td>From 2008</td>
+							</tr>
+								<tr>
+								<td>Ganesh Mahadeo Thakur</td>
+								<td>Sarpanch</td>
+								<td>1998 to 2003</td>
+							</tr>
+							<tr>
+								<td>Chandrakant Haraji Macchi</td>
+								<td>Deputy Sarpanch</td>
+								<td>1998 to 2003</td>
+							</tr>
+								<tr>
+								<td>Ganesh Mahadeo Thakur</td>
+								<td>Sarpanch</td>
+								<td>1993 to 1998</td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>Deputy Sarpanch</td>
+								<td>1993 to 1998</td>
+							</tr>
+								<tr>
+								<td>Ashok Shivaji Bhoye</td>
+								<td>Rural Development Officer</td>
+								<td>1993</td>
+							</tr>
+								<tr>
+								<td>D N Patil</td>
+								<td>Administrator</td>
+								<td>1988 to 1993</td>
+							</tr>
+								<tr>
+								<td>Ashok V Kini</td>
+								<td>Rural Development Officer</td>
+								<td>1988 to 1993</td>
+							</tr>
+								<tr>
+								<td>Atul Posala Dhodi</td>
+								<td>Sarpanch</td>
+								<td>1983 to 1988</td>
+							</tr>
+							<tr>
+								<td>Bhagwan Hotya Dhodi</td>
+								<td>Deputy Sarpanch</td>
+								<td>1983 to 1988</td>
+							</tr>
+								<tr>
+								<td>Chandrakant Atmaram Joshi</td>
+								<td>Sarpanch</td>
+								<td>1978 to 1983</td>
+							</tr>
+							<tr>
+								<td>Tulsidas Dhodi</td>
+								<td>Deputy Sarpanch</td>
+								<td>1978 to 1983</td>
+							</tr>
+								<tr>
+								<td>Deviprasad Baijjnath Trivedi</td>
+								<td>Sarpanch</td>
+								<td>1973 to 1978</td>
+							</tr>
+							<tr>
+								<td>Narayan Budhya Dhodi</td>
+								<td>Deputy Sarpanch</td>
+								<td>1973 to 1978</td>
+							</tr>
+								<tr>
+								<td>Bhaskar Parashuram Gharat</td>
+								<td>Sarpanch</td>
+								<td>1968 to 1973</td>
+							</tr>
+							<tr>
+								<td>Moreshwar Ganu Raut</td>
+								<td>Deputy Sarpanch</td>
+								<td>1968 to 1973</td>
+							</tr>
+
+							</table>
+
+						</div>
+						<div class="about_text">
+
+						</div>
+
+					</div>
+				</div>
+
+				<div  class="col-lg-5">
+					<div>
+						<img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/sarpanch.jpg" style="padding-bottom: 10px;">
+						<div style="font-family: Arial Black">{% if request.session.lang == "en" %}Sarpanch- Laxmi Janardan Chandane{% else %}सरपंच- लक्ष्मी जनार्दन चांदणे{% endif %}</div>
+					</div>
+					<div>
+						<img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/deputysarpanch.jpg" style="height:590px; padding-top: 45px; padding-bottom: 10px;">
+						<div style="font-family: Arial Black">{% if request.session.lang == "en" %}Deputy Sarpanch- Smita Rupesh Raut{% else %}उप सरपंच- स्मिता रुपेश राऊत{% endif %}</div>
+					</div>
+					<div>
+						<img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/gramsevak.jpg" style="height:590px; padding-top: 45px; padding-bottom: 10px; width: 444px">
+						<div style="font-family: Arial Black">{% if request.session.lang == "en" %}Gramsevak- Subhash Keni{% else %}ग्रामसेवक - सुभाष केणी{% endif %}</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div class="news">
+		<div class="container">
+			<div class="row">
+
+
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<script src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/js/jquery-3.2.1.min.js"></script>
+<script src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/styles/bootstrap4/popper.js"></script>
+<script src="https://s3.ap-south-1.amazonaws.com/grampanchayat/staticstyles/bootstrap4/bootstrap.min.js"></script>
+<script src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/plugins/easing/easing.js"></script>
+<script src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/plugins/parallax-js-master/parallax.min.js"></script>
+<script src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/js/custom.js"></script>
+</body>
+</html>

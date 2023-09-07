@@ -1,0 +1,13 @@
+{
+    "dev": {
+        "aws_region": "ap-south-1",
+        "django_settings": "grampanchayatProject.settings",
+        "profile_name": "default",
+        "project_name": "grampanchayat",
+        "runtime": "python3.8",
+        "s3_bucket": "grampanchayat",
+        "cors": true,
+        "certificate_arn": "arn:aws:acm:us-east-1:781336354550:certificate/3363e770-335a-4c61-83bc-786d3c666296",
+        "domain": "www.saravaligrampanchayat.com"
+    }
+}

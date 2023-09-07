@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% load static %}
+<title>
+	{% if request.session.lang == "en" %}
+        Photo Gallery
+     {% else %}
+		फोटो गॅलरी
+     {% endif %}
+</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Gallery">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/styles/bootstrap4/bootstrap.min.css">
+<link href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/styles/news.css">
+<!--<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/styles/news_responsive.css">-->
+<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/styles/services.css">
+<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/styles/common.css">
+<!--<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/styles/services_responsive.css">-->
+	<style>
+
+.dropbtn {
+
+
+    font-size: 16px;
+    background-color: #f5f3f0;
+}
+
+.dropdown {
+    position: relative;
+
+}
+
+
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+
+	</style>
+</head>
+<body style="background-image:url('https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/skulls.png');">
+<form name="home" action="#" method="POST">
+{% csrf_token %}
+
+<div class="super_container">
+
+	<!-- Header -->
+
+	<header class="header trans_200">
+
+		<!-- Top Bar -->
+		<div class="top_bar">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
+
+							<div class="top_bar_item" style="color:#220aa7; height: 15px; width: 600px; margin-left: 1px; font-size:200%; font-family: Verdana; text-shadow: 2px 2px 2px ; right:100px">{% if request.session.lang == "en" %}SARAVALI GRAMPANCHAYAT{% else %}सरावली ग्रामपंचायत{% endif %}</div>
+
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Header Content -->
+		<div class="header_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="">
+
+								<nav class="main_nav navbar navbar-light navbar-expand-md bg-faded justify-content-left">
+								    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse w-100" id="collapsingNavbar">
+        <ul class="navbar-nav w-100 justify-content-center">
+            <li class="nav-item">
+
+										<a class="nav-link" href="{% url 'home' %}">
+											{% if request.session.lang == "en" %}Home {% else %}होम {% endif %}
+										</a>
+									</li>
+									 <li class="nav-item">
+										<a class="nav-link" href="{% url 'certificates' %}">
+											{% if request.session.lang == "en" %}Certificates {% else %}दाखले {% endif %}
+										</a>
+									</li>
+
+									 <li class="nav-item dropdown">
+										  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {% if request.session.lang == "en" %}Members {% else %}सदस्य {% endif %}
+        </a>
+
+										<div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdown1">
+												<a href="{% url 'electedMember' %}">
+											{% if request.session.lang == "en" %}Elected Members {% else %}निवडून आलेले सदस्य {% endif %}
+												</a>
+												<a href="{% url 'workers' %}">
+											{% if request.session.lang == "en" %}Workers {% else %}कामगार {% endif %}
+												</a>
+
+												<a href="{% url 'committees' %}">
+											{% if request.session.lang == "en" %}Committees {% else %}समिती {% endif %}
+												</a>
+											</div>
+
+									</li>
+									 <li class="nav-item dropdown">
+										  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% if request.session.lang == "en" %}schemes {% else %}योजना {% endif %}</a>
+											<div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdown2">
+												<a href="{% url 'scm1' %}">
+											{% if request.session.lang == "en" %}Sanjay Gandhi Niradhar Yojna {% else %}संजय गांधी निराधार योजना {% endif %}
+												</a>
+												<a href="{% url 'scm2' %}">
+											{% if request.session.lang == "en" %}Pradhan Mantri Jeevan Jyoti Bima Yojana {% else %}प्रधानमंत्री जीवन ज्योती बिमा योजना {% endif %}
+												</a>
+
+												<a href="{% url 'scm3' %}">
+											{% if request.session.lang == "en" %}Mazi Kanya Bhagyashree Yojna {% else %}माझी कन्या भाग्यश्री योजना {% endif %}
+												</a>
+												<a href="{% url 'scm4' %}">
+											{% if request.session.lang == "en" %}Janani Suraksha Yojana{% else %}जननी सुरक्षा योजना {% endif %}
+												</a>
+												<a href="{% url 'scm5' %}">
+											{% if request.session.lang == "en" %}Bal Sangopan Yojana{% else %}बाल संगोपन योजना {% endif %}
+												</a>
+												<a href="{% url 'scm6' %}">
+											{% if request.session.lang == "en" %}Term Loan Scheme{% else %}मुदती कर्ज योजना {% endif %}
+												</a>
+
+										</div>
+									</li>
+
+
+									<li class="nav-item">
+										<a class="nav-link" href="{% url 'developmentPlan' %}">
+											{% if request.session.lang == "en" %}Development Plan{% else %}विकास आराखडा {% endif %}
+										</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="{% url 'photoGallery' %}">
+											{% if request.session.lang == "en" %}Photo Gallery {% else %}फोटो गॅलरी {% endif %}
+										</a>
+									</li>
+									 <li class="nav-item dropdown">
+										  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% if request.session.lang == "en" %}Other{% else %}इतर {% endif %}</a>
+										<div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdown3">
+												<a href="{% url 'other1' %}">
+											{% if request.session.lang == "en" %}Bachat Gat{% else %}बचत गट {% endif %}
+												</a>
+												<a href="{% url 'other2' %}">
+											{% if request.session.lang == "en" %}Anganwadi{% else %}अंगणवाडी {% endif %}
+												</a>
+
+												<a href="{% url 'other3' %}">
+											{% if request.session.lang == "en" %}Hospitals{% else %}हॉस्पिटल {% endif %}
+												</a>
+												<a href="{% url 'other4' %}">
+											{% if request.session.lang == "en" %}Schools{% else %}शाळा {% endif %}
+												</a>
+												<a href="{% url 'other5' %}">
+											{% if request.session.lang == "en" %}TantaMukti Committee{% else %}तंटामुक्ती समिती {% endif %}
+												</a>
+												<a href="{% url 'other6' %}">
+											{% if request.session.lang == "en" %}Factories{% else %}कारखाने {% endif %}
+												</a>
+												</a>
+												<a href="{% url 'other7' %}">
+											{% if request.session.lang == "en" %}Water Timings{% else %}पाण्याची वेळ {% endif %}
+												</a>
+										</div>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="{% url 'map' %}">
+											{% if request.session.lang == "en" %}Map {% else %}नकाशा {% endif %}
+										</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="{% url 'faq' %}">
+											{% if request.session.lang == "en" %}FAQ {% else %}प्रश्न आणी तक्रारी{% endif %}
+										</a>
+									</li>
+
+									<li>
+<div class="form-inline my-2 my-lg-0">
+	{% if request.session.lang  == "en" %}
+								  	<select class="form-control text-dark" name="selector" onchange="this.form.submit()">
+												<option value="en" selected>English</option>
+												<option value="marathi">मराठी</option>
+											</select>
+												{% else %}
+											<select  class="form-control text-dark" name="selector" onchange="this.form.submit()">
+												<option value="en">English</option>
+												<option value="marathi" selected>मराठी</option>
+										  	</select>{% endif %}
+										</div>
+									</li>
+
+								</ul>
+
+
+							</div>
+							</nav>
+							<div class="hamburger ml-auto"><i class="fa fa-bars" aria-hidden="true"></i></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="logo_container_outer">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="logo_container" style="height: 75px; width: 75px; background-image:url('https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/logo.jpg');">
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+
+	<!-- Home -->
+
+	<div class="home">
+		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/gallery.jpg" data-speed="0.8"></div>
+		<div class="home_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="home_content">
+                            <div class="home_title" style="height: 70px;"><span style="font-family: georgia">{% if request.session.lang  == "en" %}Saravali Grampanchayat{% else %}सरावली ग्रामपंचायत {% endif %}</span>{% if request.session.lang  == "en" %}Photo Gallery{% else %}फोटो गॅलरी{% endif %}</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Services -->
+
+	<div class="services">
+		<div class="container">
+
+			<div class="row services_row">
+				<h3>{% if request.session.lang  == "en" %}Different Events organised/Celebrated By Saravali Grampanchayat {% else %}ग्रामपंचायती तर्फे राबवले जाणारे विविध कार्यक्रम{% endif %}</h3><br><br><br>
+                <table class="image col-lg-5">
+					<tr>
+						<th><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/photo3.jpg" style="width:1100px; padding-bottom:0.5em;"></th>
+
+					</tr>
+					<tr>
+                        <td class="caption"><h5 style="font-family: Arial Black">{% if request.session.lang  == "en" %}Sarpanch and Deputy-Sarpanch taking their seats.{% else %}सरपंच आणि उप सरपंच चार्जेस घेताना.{% endif %}</h5></td>
+
+					</tr>
+				</table>
+
+				<table class="image col-lg-5">
+					<tr>
+						<th><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/photo1.jpg" style="width:800px; padding-bottom:0.5em; padding-top:45px; height:600px"></th>
+
+					</tr>
+					<tr>
+                        <td class="caption"><h5 style="font-family: Arial Black">{% if request.session.lang  == "en" %}Sarpanch has started new scheme of giving plant to grampanchayat workers on their birthday{% else %}मा. सरपंचा कडून ग्रामपंचायती मध्ये कर्मचाऱ्यांना त्यांच्या वाढदिवसा दिवशी एक रोप देण्याचा उपक्रम सुरू केला.{% endif %}</h5></td>
+
+					</tr>
+				</table>
+
+
+                <table class="image col-lg-5">
+					<tr>
+						<th><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/photo2.jpg" style="width:555px; padding-bottom:0.5em; padding-top:45px; padding-right:45px; height:1000px"></th>
+                        <th><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/photo4.jpg" style="width:555px; padding-bottom:0.5em; padding-top:45px; padding-right:11px; height:1000px"></th>
+
+					</tr>
+					<tr>
+                        <td class="caption"><h5 style="font-family: Arial Black">{% if request.session.lang  == "en" %}Grampanchayat Celebrating Flag Hosting.{% else %}झेंडावंदन करताना ग्रामपंचायत कार्यालय.{% endif %}</h5></td>
+                        <td class="caption"><h5 style="font-family: Arial Black">{% if request.session.lang  == "en" %}Plantation{% else %}वृक्षारोपण{% endif %}</h5></td>
+
+					</tr>
+				</table>
+				<table class="image col-lg-5">
+					<tr>
+						<th><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/raste.jpg" style="width:555px; padding-bottom:0.5em; padding-top:45px; padding-right:45px; height:1000px"></th>
+						<th><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/may.jpg" style="width:555px; padding-bottom:0.5em; padding-top:45px; padding-right:11px; height:1000px"></th>
+
+					</tr>
+					<tr>
+                        <td class="caption"><h5 style="font-family: Arial Black">{% if request.session.lang  == "en" %}Road repair done at Ostwal Empire by grampanchayat.{% else %}ऑस्त्वल एम्पायर इथे रस्त्याचे डांबरीकरण करण्यात आले.{% endif %}</h5></td>
+						<td class="caption"><h5 style="font-family: Arial Black">{% if request.session.lang  == "en" %}1 May- International Worker Day/Maharashtra Day Celebration.{% else %}1 मे २०१९ रोजी महाराष्ट्र दिन साजरा केला. कर्मचाऱ्यांच्या हस्ते झेंडावंदन करण्यात आले.{% endif %}</h5></td>
+
+					</tr>
+				</table>
+
+				<table class="image col-lg-5">
+					<tr>
+						<th><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/mandhan.jpg" style="width:555px; padding-bottom:0.5em; padding-top:45px; padding-right:45px; height:1000px"></th>
+                        <th><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/15august.jpg" style="width:555px; padding-bottom:0.5em; padding-top:45px; padding-right:11px; height:1000px"></th>
+
+					</tr>
+					<tr>
+                        <td class="caption"><h5 style="font-family: Arial Black">{% if request.session.lang  == "en" %}Saravali grampanchayat sarpanch donated one year salary to school.{% else %}एका वर्षाचे मानधन दिले शाळेला !{% endif %}</h5></td>
+                        <td class="caption"><h5 style="font-family: Arial Black">{% if request.session.lang  == "en" %}First time, On 15 August 2019, Flag hosting was done by Ex-soldier Raut sir. {% else %}१५ ऑगस्ट २०१९ रोजी ग्रामपंचायत कार्यालयात प्रथमच एका माजी सैनिक मा. राऊत सर यांच्या हस्ते ध्वजारोणाचा कार्यक्रम करण्यात आला.{% endif %}</h5></td>
+
+					</tr>
+				</table>
+
+				<table class="image col-lg-5">
+					<tr>
+						<th><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/photo5.jpg" style="width:1100px; padding-bottom:0.5em; padding-top:45px; height:600px"></th>
+
+					</tr>
+					<tr>
+                        <td class="caption"><h5 style="font-family: Arial Black">{% if request.session.lang  == "en" %}On 29th Dec 2018, Saravali grampanchayat and The mission world of society church god jointly arranged Swachhata Abhiyaan near Dr Babasaheb Ambedkar chauk, Navapur road.{% else %}२९ डिसेंबर २०१८ रोजी ग्रामपंचायत सरावली आणि द मिशन ऑफ सोसायटी चर्च गॉड यान्नी  मिळून बाबासाहेब आंबेडकर चौक, नवापूर रोड येथे स्वच्छता अभियान आयोजित केला.{% endif %}</h5></td>
+
+					</tr>
+				</table>
+
+				<table class="image col-lg-5">
+					<tr>
+						<th><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/bhumipujan.jpg" style="width:1100px; padding-bottom:0.5em; padding-top:45px; height:600px"></th>
+
+					</tr>
+					<tr>
+                        <td class="caption"><h5 style="font-family: Arial Black">{% if request.session.lang  == "en" %}On 12th Sep 2019, bhumipujan of work of dhodipuja shamshaan bhumi has been started. Money was arranged by sarpanch Laxmi Chandane under law 25-15.{% else %}दि. १२ सप्टेंबर २०१९ रोजी धोडीपुजा स्मशाभूमीच्या कामाचे भूमपूजन करण्यात आले. २५-१५ अन्तर्णागात मा. सरपंच लक्ष्मी चांदणे यांनी हा निधी आणला असून स्मशाभूमी परिसराचा विकास करण्यात येणार आहे.{% endif %}</h5></td>
+
+					</tr>
+				</table>
+
+				<table class="image col-lg-5">
+					<tr>
+						<th><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/26Nov.jpg" style="width:1100px; padding-bottom:0.5em; padding-top:45px; height:600px"></th>
+
+					</tr>
+					<tr>
+                        <td class="caption"><h5 style="font-family: Arial Black">{% if request.session.lang  == "en" %}26 Nov, National Constitution Day was celebrated by sarpanch Laxmi Janardan Chandane and member Nilkamal Dhodi of saravali grampanchayat. All students, teachers and all other has taken constitution pledge, then drawing competition was arranged for students.{% else %}मा. संरपंच मँँडम व मा.सभासद निलकमल धोडी तसेच व्यवस्थापन समिती सभासद सर्व शिक्षक,विद्यार्थी यांनी 26 नोव्हेंबर संविधान दिन साजरा केला. तसेच संरपंच मँडम सरावली यांनी शाळेत संविधान प्रतिमा भेट दिली. सर्व विद्यार्थी, शिक्षक, व इतर सर्वानी संविधान प्रतिज्ञा घेतली. नंतर चित्रकला स्पर्धा घेण्यात आली.{% endif %}</h5></td>
+
+					</tr>
+				</table>
+
+				<table class="image col-lg-5">
+					<tr>
+						<th><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/sevalaal.jpg" style="width:1100px; padding-bottom:0.5em; padding-top:45px; height:600px"></th>
+
+					</tr>
+					<tr>
+                        <td class="caption"><h5 style="font-family: Arial Black">{% if request.session.lang  == "en" %}Sant Sevalaal Jayanti celebrated by grampanchayat.{% else %}ग्रामपंचायत तर्फे संत सेवालाल जयंती साजरी करण्यात आली.{% endif %}</h5></td>
+
+					</tr>
+				</table>
+
+				<table class="image col-lg-5">
+					<tr>
+						<th><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/shivjayanti.jpg" style="width:1100px; padding-bottom:0.5em; padding-top:45px; height:600px"></th>
+
+					</tr>
+					<tr>
+                        <td class="caption"><h5 style="font-family: Arial Black">{% if request.session.lang  == "en" %}Chatrapati Shivaji Maharaj Jayanti celebrated by grampanchayat.{% else %}ग्रामपंचायत तर्फे शिवजयंती साजरी करण्यात आली.{% endif %}</h5></td>
+
+					</tr>
+				</table>
+
+				<table class="image col-lg-5">
+					<tr>
+						<th><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/dhodipuja_program1.jpg" style="width:555px; padding-bottom:0.5em; padding-top:45px; padding-right:45px; height:1000px"></th>
+                        <th><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/dhodipuja_program2.jpg" style="width:555px; padding-bottom:0.5em; padding-top:45px; padding-right:11px; height:1000px"></th>
+
+					</tr>
+					<tr>
+                        <td class="caption"><h5 style="font-family: Arial Black">{% if request.session.lang  == "en" %}Checking of arrangement of work on dharmvir Anand Dighe maidan at Dhodipuja{% else %}धोडीपूजा येतील धर्मवीर आनंद दिघे मैदान वर होणाऱ्या कार्यक्रमाची पाहणी केली.{% endif %}</h5></td>
+						<td class="caption"><h5 style="font-family: Arial Black">{% if request.session.lang  == "en" %}Checking of arrangement of work on dharmvir Anand Dighe maidan at Dhodipuja{% else %}धोडीपूजा येतील धर्मवीर आनंद दिघे मैदान वर होणाऱ्या कार्यक्रमाची पाहणी केली.{% endif %}</h5></td>
+                        
+
+					</tr>
+				</table>
+				<table class="image col-lg-5">
+					<tr>
+						<th><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/gramsabha1.jpg" style="width:1100px; padding-bottom:0.5em; padding-top:45px; height:600px"></th>
+
+					</tr>
+					<tr>
+                        <td class="caption"><h5 style="font-family: Arial Black">{% if request.session.lang  == "en" %}Gramsabha has been conducted successfully to discuss on development roadmap for financial year 2022-23.{% else %}सन २०२२-२३ या आर्थिक वर्षाचा विकास आराखडा तयार करण्यासाठी ग्रामसभा पार पडली.{% endif %}</h5></td>
+
+					</tr>
+				</table>
+				<table class="image col-lg-5">
+					<tr>
+						<th><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/gramsabha2.jpg" style="width:1100px; padding-bottom:0.5em; padding-top:45px; height:600px"></th>
+
+					</tr>
+					<tr>
+                        <td class="caption"><h5 style="font-family: Arial Black">{% if request.session.lang  == "en" %}Gramsabha has been conducted successfully to discuss on development roadmap for financial year 2022-23.{% else %}सन २०२२-२३ या आर्थिक वर्षाचा विकास आराखडा तयार करण्यासाठी ग्रामसभा पार पडली.{% endif %}</h5></td>
+
+					</tr>
+				</table>
+
+
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="footer_container">
+			<div class="container">
+				<div class="row">
+
+					<!-- Footer - About -->
+					<div class="col-lg-4 footer_col">
+						<div class="footer_about">
+
+							<div class="footer_about_text">
+								<p>{% if request.session.lang == "en" %}Some Info About Village{% else %}गावा बद्दल काही माहिती{% endif %}</p>
+							</div>
+							<ul class="footer_about_list">
+								<li><div class="footer_about_icon"><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/phone-call.svg" alt=""></div><span>8459619713</span></li>
+								<li><div class="footer_about_icon"><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/envelope.svg" alt=""></div><span>saravaligrampanchayat2018@gmail.com</span></li>
+								<li><div class="footer_about_icon"><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/placeholder.svg" alt=""></div>
+									<span>{% if request.session.lang == "en" %}At/Post- Saravali, Boisar - Palghar Road{% else %}मु/पो. सरावली, बोईसर - पालघर रोड{% endif %}</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- Footer - Links -->
+					<div class="col-lg-4 footer_col">
+						<div class="footer_links footer_column" style="padding-top:40px;">
+							<div class="footer_title">{% if request.session.lang == "en" %}Useful Links{% else %}उपयुक्त लिंक्स{% endif %}</div>
+							<ul>
+								<li><a href="http://www.zppalghar.gov.in">{% if request.session.lang == "en" %}Zilha Parishad Palghar{% else %}पालघर जिल्हा परिषद{% endif %}</a></li>
+								<li><a href="http://www.palghar.gov.in">{% if request.session.lang == "en" %}Palghar Collector Office{% else %}पालघर कलेक्टर ऑफिस{% endif %}</a></li>
+								<li><a href="https://www.maharashtra.gov.in/1125/Home">{% if request.session.lang == "en" %}Maharashtra Government{% else %}महाराष्ट्र शासन{% endif %}</a></li>
+								<li><a href="https://rdd.maharashtra.gov.in/1001/%E0%A4%AE%E0%A5%81%E0%A4%96%E0%A5%8D%E0%A4%AF-%E0%A4%AA%E0%A5%83%E0%A4%B7%E0%A5%8D%E0%A4%A0">{% if request.session.lang == "en" %}Gramvikas Maharashtra{% else %}ग्रामविकास महाराष्ट्र{% endif %}</a></li>
+
+
+							</ul>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+        <div class="copyright">
+			<div class="container">
+				<div class="row">
+
+
+					<div class="col">
+						<div class="copyright_content d-flex flex-lg-row flex-column align-items-lg-center justify-content-start">
+							<div class="cr">Copyright © 2018 Saravali GramPanchayat Site is designed and maintained by Neoteric Technologies, Boisar</div>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>
+
+<script src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/js/jquery-3.2.1.min.js"></script>
+<script src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/styles/bootstrap4/popper.js"></script>
+<script src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/styles/bootstrap4/bootstrap.min.js"></script>
+<script src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/plugins/easing/easing.js"></script>
+<script src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/plugins/parallax-js-master/parallax.min.js"></script>
+</form>
+</body>
+</html>

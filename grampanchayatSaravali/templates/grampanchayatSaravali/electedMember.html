@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% if request.session.lang == "en" %}
+        Elected Member
+     {% else %}
+		निवडून आलेले सदस्य
+     {% endif %}
+<title>Elected Members</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="Elected Member">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/styles/bootstrap4/bootstrap.min.css">
+<link href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/styles/news.css">
+<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/styles/common.css">
+<!--<link rel="stylesheet" type="text/css" href="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/styles/news_responsive.css">-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700">
+
+<style>
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border: 2px solid #9c7676;
+}
+
+td {
+
+    text-align: left;
+    padding: 8px;
+    border: 2px solid #9c7676;
+}
+
+th {
+
+    text-align: left;
+    padding: 8px;
+    border: 2px solid #9c7676;
+    color: #441c1c;
+}
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.dropbtn {
+
+
+    font-size: 16px;
+    background-color: #f5f3f0;
+}
+
+.dropdown {
+    position: relative;
+
+}
+
+
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+
+</style>
+</head>
+<body style="background-image:url('https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/skulls.png');">
+<form name="home" action="#" method="POST">
+{% csrf_token %}
+
+<div class="super_container">
+
+	<!-- Header -->
+
+	<header class="header trans_200">
+
+		<!-- Top Bar -->
+		<div class="top_bar">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
+
+							<div class="top_bar_item" style="color:#220aa7; height: 15px; width: 600px; margin-left: 1px; font-size:200%; font-family: Verdana; text-shadow: 2px 2px 2px ; right:100px">{% if request.session.lang == "en" %}SARAVALI GRAMPANCHAYAT{% else %}सरावली ग्रामपंचायत{% endif %}</div>
+
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Header Content -->
+		<div class="header_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="">
+
+								<nav class="main_nav navbar navbar-light navbar-expand-md bg-faded justify-content-left">
+								    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse w-100" id="collapsingNavbar">
+        <ul class="navbar-nav w-100 justify-content-center">
+            <li class="nav-item">
+
+										<a class="nav-link" href="{% url 'home' %}">
+											{% if request.session.lang == "en" %}Home {% else %}होम {% endif %}
+										</a>
+									</li>
+									 <li class="nav-item">
+										<a class="nav-link" href="{% url 'certificates' %}">
+											{% if request.session.lang == "en" %}Certificates {% else %}दाखले {% endif %}
+										</a>
+									</li>
+
+									 <li class="nav-item dropdown">
+										  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {% if request.session.lang == "en" %}Members {% else %}सदस्य {% endif %}
+        </a>
+
+										<div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdown1">
+												<a href="{% url 'electedMember' %}">
+											{% if request.session.lang == "en" %}Elected Members {% else %}निवडून आलेले सदस्य {% endif %}
+												</a>
+												<a href="{% url 'workers' %}">
+											{% if request.session.lang == "en" %}Workers {% else %}कामगार {% endif %}
+												</a>
+
+												<a href="{% url 'committees' %}">
+											{% if request.session.lang == "en" %}Committees {% else %}समिती {% endif %}
+												</a>
+											</div>
+
+									</li>
+									 <li class="nav-item dropdown">
+										  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% if request.session.lang == "en" %}schemes {% else %}योजना {% endif %}</a>
+											<div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdown2">
+												<a href="{% url 'scm1' %}">
+											{% if request.session.lang == "en" %}Sanjay Gandhi Niradhar Yojna {% else %}संजय गांधी निराधार योजना {% endif %}
+												</a>
+												<a href="{% url 'scm2' %}">
+											{% if request.session.lang == "en" %}Pradhan Mantri Jeevan Jyoti Bima Yojana {% else %}प्रधानमंत्री जीवन ज्योती बिमा योजना {% endif %}
+												</a>
+
+												<a href="{% url 'scm3' %}">
+											{% if request.session.lang == "en" %}Mazi Kanya Bhagyashree Yojna {% else %}माझी कन्या भाग्यश्री योजना {% endif %}
+												</a>
+												<a href="{% url 'scm4' %}">
+											{% if request.session.lang == "en" %}Janani Suraksha Yojana{% else %}जननी सुरक्षा योजना {% endif %}
+												</a>
+												<a href="{% url 'scm5' %}">
+											{% if request.session.lang == "en" %}Bal Sangopan Yojana{% else %}बाल संगोपन योजना {% endif %}
+												</a>
+												<a href="{% url 'scm6' %}">
+											{% if request.session.lang == "en" %}Term Loan Scheme{% else %}मुदती कर्ज योजना {% endif %}
+												</a>
+
+										</div>
+									</li>
+
+
+									<li class="nav-item">
+										<a class="nav-link" href="{% url 'developmentPlan' %}">
+											{% if request.session.lang == "en" %}Development Plan{% else %}विकास आराखडा {% endif %}
+										</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="{% url 'photoGallery' %}">
+											{% if request.session.lang == "en" %}Photo Gallery {% else %}फोटो गॅलरी {% endif %}
+										</a>
+									</li>
+									 <li class="nav-item dropdown">
+										  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{% if request.session.lang == "en" %}Other{% else %}इतर {% endif %}</a>
+										<div class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdown3">
+												<a href="{% url 'other1' %}">
+											{% if request.session.lang == "en" %}Bachat Gat{% else %}बचत गट {% endif %}
+												</a>
+												<a href="{% url 'other2' %}">
+											{% if request.session.lang == "en" %}Anganwadi{% else %}अंगणवाडी {% endif %}
+												</a>
+
+												<a href="{% url 'other3' %}">
+											{% if request.session.lang == "en" %}Hospitals{% else %}हॉस्पिटल {% endif %}
+												</a>
+												<a href="{% url 'other4' %}">
+											{% if request.session.lang == "en" %}Schools{% else %}शाळा {% endif %}
+												</a>
+												<a href="{% url 'other5' %}">
+											{% if request.session.lang == "en" %}TantaMukti Committee{% else %}तंटामुक्ती समिती {% endif %}
+												</a>
+												<a href="{% url 'other6' %}">
+											{% if request.session.lang == "en" %}Factories{% else %}कारखाने {% endif %}
+												</a>
+												</a>
+												<a href="{% url 'other7' %}">
+											{% if request.session.lang == "en" %}Water Timings{% else %}पाण्याची वेळ {% endif %}
+												</a>
+										</div>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="{% url 'map' %}">
+											{% if request.session.lang == "en" %}Map {% else %}नकाशा {% endif %}
+										</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link" href="{% url 'faq' %}">
+											{% if request.session.lang == "en" %}FAQ {% else %}प्रश्न आणी तक्रारी{% endif %}
+										</a>
+									</li>
+
+									<li>
+<div class="form-inline my-2 my-lg-0">
+	{% if request.session.lang  == "en" %}
+								  	<select class="form-control text-dark" name="selector" onchange="this.form.submit()">
+												<option value="en" selected>English</option>
+												<option value="marathi">मराठी</option>
+											</select>
+												{% else %}
+											<select  class="form-control text-dark" name="selector" onchange="this.form.submit()">
+												<option value="en">English</option>
+												<option value="marathi" selected>मराठी</option>
+										  	</select>{% endif %}
+										</div>
+									</li>
+
+								</ul>
+
+
+							</div>
+							</nav>
+							<div class="hamburger ml-auto"><i class="fa fa-bars" aria-hidden="true"></i></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="logo_container_outer">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="logo_container" style="height: 75px; width: 75px; background-image:url('https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/logo.jpg');">
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</header>
+	<!-- Home -->
+
+	<div class="home">
+		<div class="home_background parallax-window" data-parallax="scroll" data-image-src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/elected.jpg" data-speed="0.8"></div>
+		<div class="home_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="home_content">
+							<div class="home_title" style="height: 70px;"><span style="font-family: georgia">{% if request.session.lang == "en" %}Saravali Grampanchayat {% else %}सरावली ग्रामपंचायत {% endif %}</span>{% if request.session.lang == "en" %} Elected Member{% else %} निवडूण आलेले सदस्य{% endif %}</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- News -->
+
+	<div class="news">
+		<div class="container">
+			<div class="row">
+
+				<!-- News Posts -->
+				<div class="col-lg-8">
+
+					<div>
+						<h4 style="font-family: Arial Black">{% if request.session.lang  == "en" %}Elected Members of Saravali Grampanchayat{% else %}सरावली ग्रामपंचायतीचे निवडूण आलेले सदस्य {% endif %}</h4>
+						<table style="margin-bottom:30px; margin-top:40px;">
+							<tr>
+								<th>{% if request.session.lang == "en" %}Elected Candidates{% else %} निवडूण आलेले सदस्य  {% endif %}</th>
+								<th>{% if request.session.lang == "en" %}Position{% else %}पद{% endif %}</th>
+								<th>{% if request.session.lang == "en" %}Ward{% else %}वॉर्ड{% endif %}</th>
+							</tr>
+							<tr>
+								<td>{% if request.session.lang == "en" %}Laxmi Janardan Chandane{% else %}लक्ष्मी जनार्दन चांदणे{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}Sarpanch{% else %}सरपंच{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}Sarpanch{% else %}सरपंच{% endif %}</td>
+							</tr>
+							<tr>
+								<td>{% if request.session.lang == "en" %}Manisha Gharat{% else %}मनीषा मंदेश घरत{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}Deputy Sarpanch{% else %}उप सरपंच{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}4D{% else %}४ड{% endif %}</td>
+							</tr>
+							<tr>
+								<td>{% if request.session.lang == "en" %}Praful Vaman Gharat{% else %}प्रफुल वामन घरत{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}Member{% else %}सदस्य{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}1A{% else %}१अ{% endif %}</td>
+							</tr>
+							<tr>
+								<td>{% if request.session.lang == "en" %}Prema Bhupendra Machhi{% else %}प्रेमा भूपेंद्र माच्छी{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}Member{% else %}सदस्य{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}1A{% else %}१अ{% endif %}</td>
+							</tr>
+							<tr>
+								<td>{% if request.session.lang == "en" %}Milind Mahadev Yadav{% else %}मिलिंद महादेव यादव{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}Member{% else %}सदस्य{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}2B{% else %}२ब{% endif %}</td>
+							</tr>
+							<tr>
+								<td>{% if request.session.lang == "en" %}Mukesh Jaywant Gharat{% else %}मुकेश जयवंत घरत{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}Member{% else %}सदस्य{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}2B{% else %}२ब{% endif %}</td>
+							</tr>
+							<tr>
+								<td>{% if request.session.lang == "en" %}Urmila Ganesh Thakur{% else %}उर्मिला गणेश ठाकूर{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}Member{% else %}सदस्य{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}2B{% else %}२ब{% endif %}</td>
+							</tr>
+							<tr>
+								<td>{% if request.session.lang == "en" %}Vijay Bhaskar Raut{% else %}विजय भास्कर राऊत{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}Member{% else %}सदस्य{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}3C{% else %}३क{% endif %}</td>
+							</tr>
+							<tr>
+								<td>{% if request.session.lang == "en" %}Dipa Dattatray Raut{% else %}दीपा दत्तात्रय राऊत{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}Member{% else %}सदस्य{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}3C{% else %}३क{% endif %}</td>
+							</tr>
+							<tr>
+								<td>{% if request.session.lang == "en" %}Kanchan Suresh Sahani{% else %}कांचन सुरेश सहानी{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}Member{% else %}सदस्य{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}3C{% else %}३क{% endif %}</td>
+							</tr>
+							<tr>
+								<td>{% if request.session.lang == "en" %}Sachin Vilas Patil{% else %}सचिन विलास पाटिल{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}Member{% else %}सदस्य{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}4D{% else %} ४ड{% endif %}</td>
+							</tr>
+							<tr>
+								<td>{% if request.session.lang == "en" %}Ashok Baliram Salunke{% else %}अशोक बळीराम साळुंखे{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}Member{% else %}सदस्य{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}4D{% else %} ४ड{% endif %}</td>
+							</tr>
+							<tr>
+								<td>{% if request.session.lang == "en" %}Himmat Ishakkhan Pathan{% else %}हिम्मत इशक्खान पठाण{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}Member{% else %}सदस्य{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}5E{% else %}५इ{% endif %}</td>
+							</tr>
+							<tr>
+								<td>{% if request.session.lang == "en" %}Nilkamal Navin Dhodi{% else %}नीलकमल नवीन धोडी{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}Member{% else %}सदस्य{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}5E{% else %}५इ{% endif %}</td>
+							</tr>
+							<tr>
+								<td>{% if request.session.lang == "en" %}Nimla Surendra Nishad{% else %}नीमला सुरेंद्र निषाद{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}Member{% else %}सदस्य{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}5E{% else %}५इ{% endif %}</td>
+							</tr>
+							<tr>
+								<td>{% if request.session.lang == "en" %}Dinesh Gopinath Sankhe{% else %}दिनेश गोपीनाथ संखे{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}Member{% else %}सदस्य{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}6F{% else %} 6फ {% endif %}</td>
+							</tr>
+							
+							<tr>
+								<td>{% if request.session.lang == "en" %}Nishita Nitesh Gharat{% else %}नीशीता नितेश घरत{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}Member{% else %}सदस्य{% endif %}</td>
+								<td>{% if request.session.lang == "en" %}6F{% else %} 6फ {% endif %}</td>
+							</tr>
+
+						</table>
+					</div>
+
+
+				</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="footer_container">
+			<div class="container">
+				<div class="row">
+
+					<!-- Footer - About -->
+					<div class="col-lg-4 footer_col">
+						<div class="footer_about">
+
+							<div class="footer_about_text">
+								<p>{% if request.session.lang == "en" %}Some Info About Village{% else %}गावा बद्दल काही माहिती{% endif %}</p>
+							</div>
+							<ul class="footer_about_list">
+								<li><div class="footer_about_icon"><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/phone-call.svg" alt=""></div><span>8459619713</span></li>
+								<li><div class="footer_about_icon"><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/envelope.svg" alt=""></div><span>saravaligrampanchayat2018@gmail.com</span></li>
+								<li><div class="footer_about_icon"><img src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/images/placeholder.svg" alt=""></div>
+									<span>{% if request.session.lang == "en" %}At/Post- Saravali, Boisar - Palghar Road{% else %}मु/पो. सरावली, बोईसर - पालघर रोड{% endif %}</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<!-- Footer - Links -->
+					<div class="col-lg-4 footer_col">
+						<div class="footer_links footer_column" style="padding-top:40px;">
+							<div class="footer_title">{% if request.session.lang == "en" %}Useful Links{% else %}उपयुक्त लिंक्स{% endif %}</div>
+							<ul>
+								<li><a href="http://www.zppalghar.gov.in">{% if request.session.lang == "en" %}Zilha Parishad Palghar{% else %}पालघर जिल्हा परिषद{% endif %}</a></li>
+								<li><a href="http://www.palghar.gov.in">{% if request.session.lang == "en" %}Palghar Collector Office{% else %}पालघर कलेक्टर ऑफिस{% endif %}</a></li>
+								<li><a href="https://www.maharashtra.gov.in/1125/Home">{% if request.session.lang == "en" %}Maharashtra Government{% else %}महाराष्ट्र शासन{% endif %}</a></li>
+								<li><a href="https://rdd.maharashtra.gov.in/1001/%E0%A4%AE%E0%A5%81%E0%A4%96%E0%A5%8D%E0%A4%AF-%E0%A4%AA%E0%A5%83%E0%A4%B7%E0%A5%8D%E0%A4%A0">{% if request.session.lang == "en" %}Gramvikas Maharashtra{% else %}ग्रामविकास महाराष्ट्र{% endif %}</a></li>
+
+
+							</ul>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+        <div class="copyright">
+			<div class="container">
+				<div class="row">
+
+
+					<div class="col">
+						<div class="copyright_content d-flex flex-lg-row flex-column align-items-lg-center justify-content-start">
+							<div class="cr">Copyright © 2018 Saravali GramPanchayat Site is designed and maintained by Neoteric Technologies, Boisar</div>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>
+
+<script src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/js/jquery-3.2.1.min.js"></script>
+<script src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/styles/bootstrap4/popper.js"></script>
+<script src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/styles/bootstrap4/bootstrap.min.js"></script>
+<script src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/plugins/easing/easing.js"></script>
+<script src="https://s3.ap-south-1.amazonaws.com/grampanchayat/static/plugins/parallax-js-master/parallax.min.js"></script>
+</form>
+</body>
+</html>
